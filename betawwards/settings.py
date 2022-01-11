@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     'bet',
     'bootstrap4',
     'cloudinary',
-    'star_ratings'
-    'tinymce',
+    
+    
     'corsheaders',
     'rest_framework',
 ]
@@ -85,10 +85,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'betawwards.wsgi.application'
-STAR_RATINGS_RERATE = True
-STAR_RATINGS_RERATE_SAME_DELETE = True
-STAR_RATINGS_CLEARABLE = True
-STAR_RATINGS_RANGE  = 5
+
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -100,9 +97,10 @@ DATABASES = {
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': config('DB_HOST'),
-        'PORT': '',
     }
 }
+
+
 
 #add configs
 cloudinary.config( 
@@ -142,7 +140,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -150,7 +148,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

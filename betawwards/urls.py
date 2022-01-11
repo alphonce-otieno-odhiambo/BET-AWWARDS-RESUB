@@ -28,7 +28,7 @@ urlpatterns = [
     path('accounts/', include('django_registration.backends.one_step.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('logout/', views.logout_then_login, name='logout'),
-    path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    
     path('api-auth/', include('rest_framework.urls')),
     path('api/token/',TokenObtainPairView.as_view()),
     path('api/token/refresh/',TokenRefreshView.as_view()),

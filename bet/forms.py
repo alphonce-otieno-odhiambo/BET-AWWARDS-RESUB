@@ -11,9 +11,9 @@ class ProfileForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model=Post        
-        fields=['project_name','category','description ','project_pic','posted_at']
+        fields=['project_name','category','project_pic',]
 
 class ReviewForm(forms.ModelForm):
     class Meta:
         model=Review        
-        fields=['reviews','posted_at','location']
+        fields=['reviews','location']

@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 from cloudinary.models import CloudinaryField
 from django.utils import timezone
 from django.contrib.contenttypes.fields import GenericRelation
-from star_ratings.models import Rating
+
 
 
 
@@ -21,7 +21,7 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=50)
     profile_pic = CloudinaryField('image')
     bio = models.CharField(max_length=250)
-    mobile_number = models.IntegerField(blank=True)
+    mobile_number = models.IntegerField( null = False, blank=True)
     email =  models.CharField(max_length=60) 
 
 
@@ -33,13 +33,7 @@ class Profile(models.Model):
     def _str_(self):
         return self.user.username
         
-    # @receiver(post_save, sender=User)
-    # def create_user_profile(sender, instance, created, **kwargs):
-    #     if created:
-    #         Profile.objects.create(user=instance)
-    # @receiver(post_save, sender=User)
-    # def save_user_profile(sender, instance, **kwargs):
-    #     instance.profile.save()
+    
 
 class Post(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE, null=True,related_name='poste') 

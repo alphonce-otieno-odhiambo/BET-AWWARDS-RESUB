@@ -5,8 +5,9 @@ from . import views as main_views
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('department', views.DepView),
-router.register('employee', views.EmpView),
+router.register('department', views.PofileView),
+router.register('employee', views.PostView),
+router.register('employee', views.ReviewView),
 
 urlpatterns = [
     path('', views.home , name = 'home'),
