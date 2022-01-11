@@ -13,7 +13,7 @@ class PostForm(forms.ModelForm):
         model=Post        
         fields=['project_name','category','description ','project_pic','posted_at']
 
-class Review(forms.ModelForm):
+class ReviewForm(forms.ModelForm):
     class Meta:
         model=Review        
         fields=['reviews','posted_at']
