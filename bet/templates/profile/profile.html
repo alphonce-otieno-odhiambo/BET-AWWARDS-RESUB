@@ -1,41 +1,38 @@
-{% extends "base.html" %}
-{% block content %}
-<section class="profile container">
-    <div class=" mt-5">
-        <div class="row">
-            <div class="card col-md-6 text-left">
-                {% if profile.profile_photo %}
-                <img src="{{profile.profile_picture.url}}" alt="" style="border-radius: 50%; width: 50%; height: auto;">
-                {%else%}
-                <img src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
-                    class="card-img-top" alt="My profile picture">
-                {% endif %}
-                <div class="card-body">
-                    <p>Username: {{ user.username }}</p>
-                    <p>
-                        {% if profile.bio %}
-                        <small>Bio: {{ profile.bio }}</small>
-                        {% else %}
-                        <span class="text-danger">No about me</span>
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6 text-center">
-                <div class="row">
-                    <div class="col-md-6 details">
-                        <div class="first">
-                            <div>
-                                <a href="{%url 'update_profile' user.id %}"
-                                    class="btn btn-outline-dark bg-dark text-white rounded-pill">
-                                    Update Profile
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{% load static%}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="text-center mt-5">
+                <h1 class="heading">PROFILE</h1>
+                <p>“You're a car, but most of all, what you are, <br> what you've become, is a mate. <br> And that's what makes a car special. <br> That's what makes a car great. You start to think of it as a person"</p>
+                <p>Jeremy Clarkson</p>
             </div>
         </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 profile-details">
+            {% for profile in profiles %}
+            <div class="mt-4 p-3 text-center">
+
+                <img class="prof-pic" src="{{profile.profile_pic.url}}" alt="">
+                <p class="mt-2">{{profile.first_name}} {{profile.last_name}}</p>
+                <p><i class="fas fa-user me-2"></i>{{profile.category}}</p>
+                <p><i class="fas fa-quote-right me-2"></i>{{profile.description}}</p>
+                
+                <h6>CONTACT INFORMATION</h6>
+                <p><i class="far fa-envelope me-2"></i>{{profile.email}}</p>
+                <p><i class="fas fa-phone me-2"></i>+254{{profile.mobile_number}}</p>
+                <a  href="{% url 'logout'%}"><p><i style="color:red" class="fas fa-power-off me-2"></i>Logout</p></a>
+            </div>
+            {% endfor %}
+
+        </div>
+
     </div>
-</section>
+</div>
+<div id="map">
+
+</div>
+
 {% endblock %}
