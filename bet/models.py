@@ -9,9 +9,9 @@ from star_ratings.models import Rating
 
 
 CATEGORY_CHOICES = (
-	('Car-Owner','Car Owner'),
-	('Mechanic/Garage','Mechanic/Garage'),
-	('Spareparts-Retailer','Spare Parts Retailer'),	
+	('Designe','Designe'),
+	('Informative','Informative'),
+	('Functionality','Functionality'),	
 ) 
 # Create your models here.
 class Profile(models.Model):
