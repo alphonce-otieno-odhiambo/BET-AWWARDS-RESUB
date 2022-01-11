@@ -1,0 +1,35 @@
+{%extends "base.html"%}
+{% load bootstrap4 %}
+{% block content %}
+<br><br>
+<div class="container-fluid" style="background-image:url('https://images.unsplash.com/photo-1515462277126-2dd0c162007a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YXJ0JTIwZGVzaWduJTIwYmxhY2t8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60');background-size: cover; font-family: 'Cookie', cursive;font-size: 2.0em;">
+  <div class="row"><br>
+    <!-- Empty div -->
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      {% if form.errors %}
+        <p> Password or Username is incorrect </p>
+      {% endif %}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="text-center"><strong>SIGN IN</strong></h3>
+        </div>
+        <div class="panel-body">
+          <form  action="/accounts/login/" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form%}
+            <div class="form-group">
+              <input type="submit" style="color:black;font-size: 0.7em;" class="btn btn-outline-success btn-sm" value="Sign In">
+            </div>
+            <input type="hidden" name="next" value="{{next}}">
+          </form>
+          <p>Don't have an account?Sign up below</p>
+          <button class="btn btn-outline-success btn-sm"><a style="color:black;font-size: 1.5em;" href="/accounts/register/">Sign Up</a></button>
+        </div>
+      </div>
+    </div>
+    <!-- empty div -->
+    <div class="col-md-4"></div>
+  </div>
+</div>
+{% endblock %}

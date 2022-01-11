@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+{% load ratings %}
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+{% ratings object %}
+<section class="profile container">
+    <div class="jumbotron jumbotron-fluid">
+       <div class="row">
+        <div class="col-md-4">
+            <img src="https://images.unsplash.com/photo-1641505958520-8f2aec1a5802?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="" style="height: 250px;width: 350px;">
+        </div>
+        <hr>
+        <div class="col-md-8">
+         <div class="card-body">
+             <h5 class="card-title">Card title</h5>
+             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+             <p>/static/star-ratings/images/stars.png</p>
+           </div>
+        </div>
+       </div>
+    </div>
+</section>
+{% endblock %}
