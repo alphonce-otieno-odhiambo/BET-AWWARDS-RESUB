@@ -25,13 +25,13 @@ def update_profile(request):
             return redirect ('index')
         else:
             form = ProfileForm()
-    return render(request, 'update-profile.html', {'form': form})
+    return render(request, 'profile/update_profile.html', {'form': form})
 
 def profile(request,pk):
     user = User.objects.get(pk = pk)
     profiles = Profile.objects.filter(user = user).all()
     current_user = request.user    
-    return render(request,'profile.html',{"current_user":current_user, "user":user, "profiles":profiles})
+    return render(request,'profile/profile.html',{"current_user":current_user, "user":user, "profiles":profiles})
 
 
 def project_post(request):
