@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 
-from .forms import ProfileForm, ProjectForm
+from .forms import *
 from . models import *
 
 # Create your views here.
 def home(request):
     current_user = request.user
-    projo = Project.objects.all()
+    projo = Post.objects.all()
     return render (request, 'home.html', {"projo":projo})
 
 
@@ -34,21 +35,19 @@ def profile(request,pk):
     return render(request,'profile/profile.html',{"current_user":current_user, "user":user, "profiles":profiles})
 
 
-def project_post(request):
-    
-    projo= Project.objects.all()
-    form = ProjectForm()
-    if request.method == "POST":
-            form = ProjectForm(request.POST,request.FILES,instance=projo)
-            if form.is_valid():
-                projo = form.save(commit=False)
-                projo.save()
-                return redirect('/')
-    return render(request, 'project/project.html', {"form":form})
-
-def rate_project(request):
-    project = Project.objects.all()
-    return render (request, 'project/rate_project.html', {"project":project})
+def project_post(request):    
+    user = request.user
+    profiles = Profile.objects.filter(user = user).all()
+    form = PostForm(request.POST, request.FILES)
+    if request.method == 'POST':  
+        if form.is_valid():
+            p = form.save(commit=False)
+            p.user = request.user
+            p.save()
+            return redirect ('home')        
+        else:
+            form = PostForm()    
+    return render(request,'project/post_project.html',{'form':form, 'profiles':profiles})
 
 
 
