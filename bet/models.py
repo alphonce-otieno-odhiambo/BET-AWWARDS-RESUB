@@ -8,10 +8,11 @@ from django.contrib.contenttypes.fields import GenericRelation
 from star_ratings.models import Rating
 
 
+
 CATEGORY_CHOICES = (
 	('Designe','Designe'),
 	('Informative','Informative'),
-	('Functionality','Functionality'),	
+	('Functionality','Fun'),	
 ) 
 # Create your models here.
 class Profile(models.Model):
@@ -40,17 +41,12 @@ class Profile(models.Model):
     # def save_user_profile(sender, instance, **kwargs):
     #     instance.profile.save()
 
-class Project(models.Model):
-    project_name = models.CharField(max_length=50)
-    country = models.CharField(max_length=200)
-    date_added  = models.DateTimeField(default=timezone.now)
-    image =  CloudinaryField('image')
-
-    def save_project(self):
-        self.save()
-
-    def upadate_project(self):
-        self.save()
-    def _str_(self):
-        return self.project_name
-
+class Post(models.Model):
+    user = models.ForeignKey(User,on_delete = models.CASCADE, null=True,related_name='poste') 
+    
+    project_pic = CloudinaryField('image')
+    category = models.CharField(max_length=60,choices=CATEGORY_CHOICES, default="Designe",null=True)
+    project_name=  models.CharField(max_length=50)
+    posted_at = models.DateTimeField(auto_now_add=True, null=True)
+    def __str__(self):
+        return self.issue 

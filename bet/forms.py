@@ -8,7 +8,7 @@ class ProfileForm(forms.ModelForm):
         fields=['first_name','last_name','profile_pic','bio','mobile_number','email']
         
 
-class ProjectForm(forms.ModelForm):
+class PostForm(forms.ModelForm):
     class Meta:
-        model = Project
-        fields = ("project_name","country", "image", "date_added")
+        model=Post        
+        fields=['issue','project_pic','make','model','year']
