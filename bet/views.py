@@ -96,4 +96,19 @@ def review(request,post_id):
   return redirect('index')
 
 
+class PofileView(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly)
 
+class PostView(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly)
+
+class ReviewView(viewsets.ModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly)
+
+    
