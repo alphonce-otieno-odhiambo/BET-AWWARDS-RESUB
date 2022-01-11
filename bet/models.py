@@ -50,3 +50,12 @@ class Post(models.Model):
     posted_at = models.DateTimeField(auto_now_add=True, null=True)
     def __str__(self):
         return self.issue 
+
+class Response(models.Model):
+    user = models.ForeignKey(User,on_delete = models.CASCADE)
+    post = models.ForeignKey(Post,on_delete = models.CASCADE,null=True)
+    responses = models.TextField(max_length=400)
+    posted_at = models.DateTimeField(auto_now_add=True, null=True)
+    def __str__(self):
+        return self.responses 
+    

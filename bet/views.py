@@ -9,8 +9,8 @@ from . models import *
 # Create your views here.
 def home(request):
     current_user = request.user
-    projo = Post.objects.all()
-    return render (request, 'home.html', {"projo":projo})
+    posts = Post.objects.all().order_by('-posted_at')
+    return render (request, 'home.html', {"posts":posts})
 
 
 
