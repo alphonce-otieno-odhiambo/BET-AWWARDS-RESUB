@@ -15,7 +15,7 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     profile_pic = CloudinaryField('image')
-    describioption = models.CharField(max_length=250)
+    bio = models.CharField(max_length=250)
     mobile_number = models.IntegerField(blank=True)
     email =  models.CharField(max_length=60) 
 

@@ -18,17 +18,18 @@ def profile(request):
     profile = Profile.objects.filter(user_id=current_user.id).first()           
     return render(request, "profile/profile.html", {"profile": profile, })
 
-def update_profile(request,id):
-    user = User.objects.get(id=id)
-    profile = Profile.objects.get(user_id = user)
-    form = ProfileForm(instance=profile)
-    if request.method == "POST":
-            form = ProfileForm(request.POST,request.FILES,instance=profile)
-            if form.is_valid():
-                profile = form.save(commit=False)
-                profile.save()
-                return redirect('profile')
-    return render(request, 'profile/create_profile.html', {"form":form})
+def update_profile(request):
+    current_user = request.user
+    form = ProfileForm(request.POST, request.FILES)
+    if request.method == 'POST':          
+        if form.is_valid():
+            prof = form.save(commit=False)
+            prof.user = request.user
+            prof.save()
+            return redirect ('index')
+        else:
+            form = ProfileForm()
+    return render(request, 'update-profile.html', {'form': form})
 
 def project_post(request):
     
