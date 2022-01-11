@@ -16,4 +16,4 @@ class PostForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model=Review        
-        fields=['reviews','posted_at']
+        fields=['reviews','posted_at','location']

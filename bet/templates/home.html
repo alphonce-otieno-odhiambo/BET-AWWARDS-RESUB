@@ -42,26 +42,26 @@
         <img class="card-img-top" src="{{post.project_pic.url}}" alt="Card image cap">
         <div class="card-body">
             <div class="d-flex justify-content-around p-2">
-                <p class="card-title text-dark"> {{post.make}} {{post.model}}</p>
-                <p class="card-text text-dark">Year: {{post.year}}</p>
+                <p class="card-title text-dark"> {{post.project_name}} {{post.category}}</p>
+                <p class="card-text text-dark">TIME: {{post.posted_at}}</p>
             </div>
-            <p style="color: #A3423C" class="card-text text-dark">ISSUE: {{post.issue}}</p>
+            <p style="color: #A3423C" class="card-text text-dark">DESCRIPTION: {{post.description}}</p>
         </div>
         <h6 class="text-center">RESPONSES</h6>
         <ul class="list-group list-group-flush">
             {% for respo in respos %}
             {% if respo.post_id == post.id %}
             <li class="list-group-item"><a class="mb-2" href="{% url 'profile' pk=post.user.id%}"><i
-                        class="fas fa-user mx-1"></i>{{respo.user}}</a> <br> <span>{{respo.responses}}</span> <br><span
+                        class="fas fa-user mx-1"></i>{{respo.user}}</a> <br> <span>{{respo.reviews}}</span> <br><span
                     class="text-muted"><i class="far mx-1 fa-clock"></i>{{respo.posted_at|timesince}} ago</span></li>
             <li class="list-group-item"><i class="fas me-2 fa-map-marker-alt"></i>{{respo.location}} <span><i
-                        class="far ms-3 me-1 fa-calendar-alt"></i> {{respo.schedule_time}}</span></li>
+                        class="far ms-3 me-1 fa-calendar-alt"></i> </span></li>
             {% else %}
 
             {% endif %}
             {% endfor %}
 
-            <form action="{% url 'response' post_id=post.id%}" class="p-4" method="post" enctype="multipart/form-data">
+            <form action="{% url 'reviev' post_id=post.id%}" class="p-4" method="post" enctype="multipart/form-data">
 
                 {% csrf_token%}
                 {% bootstrap_form form %}
