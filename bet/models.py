@@ -8,7 +8,11 @@ from django.contrib.contenttypes.fields import GenericRelation
 from star_ratings.models import Rating
 
 
-
+CATEGORY_CHOICES = (
+	('Car-Owner','Car Owner'),
+	('Mechanic/Garage','Mechanic/Garage'),
+	('Spareparts-Retailer','Spare Parts Retailer'),	
+) 
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
@@ -50,8 +54,3 @@ class Project(models.Model):
     def _str_(self):
         return self.project_name
 
-# class Foo(models.Model):
-#     bar = models.CharField(max_length=100)
-#     ratings = GenericRelation(Rating, related_query_name='foos')
-
-# Foo.objects.filter(ratings__isnull=False).order_by('ratings__average')
