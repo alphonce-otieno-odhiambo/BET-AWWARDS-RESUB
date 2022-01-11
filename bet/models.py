@@ -12,9 +12,12 @@ from star_ratings.models import Rating
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
-    bio = models.TextField(max_length=200)
-    email = models.EmailField()
-    profile_picture = CloudinaryField('image')
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    profile_pic = CloudinaryField('image')
+    describioption = models.CharField(max_length=250)
+    mobile_number = models.IntegerField(blank=True)
+    email =  models.CharField(max_length=60) 
 
 
     def save_profile(self):
