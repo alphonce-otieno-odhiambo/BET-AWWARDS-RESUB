@@ -43,7 +43,7 @@ class Profile(models.Model):
 
 class Post(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE, null=True,related_name='poste') 
-    
+    description = models.TextField(max_length=400)
     project_pic = CloudinaryField('image')
     category = models.CharField(max_length=60,choices=CATEGORY_CHOICES, default="Designe",null=True)
     project_name=  models.CharField(max_length=50)

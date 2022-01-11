@@ -11,4 +11,4 @@ class ProfileForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model=Post        
-        fields=['issue','project_pic','make','model','year']
+        fields=['project_name','category','description ','project_pic','posted_at']
