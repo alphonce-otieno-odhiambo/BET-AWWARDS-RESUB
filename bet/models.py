@@ -17,8 +17,8 @@ CATEGORY_CHOICES = (
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    
+    full_name = models.CharField(max_length=50)
     profile_pic = CloudinaryField('image')
     bio = models.CharField(max_length=250)
     
