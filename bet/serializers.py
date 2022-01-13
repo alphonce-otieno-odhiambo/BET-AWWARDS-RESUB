@@ -4,7 +4,7 @@ from .models import *
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
-        fields = ("id", "url","bio","user",  "full_name", "mobile_number", "email")
+        fields = ("id", "url","full_name","country","bio","contact","profile_picture","created_on")
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Post

@@ -17,12 +17,22 @@ CATEGORY_CHOICES = (
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
-    
     full_name = models.CharField(max_length=50)
-    profile_pic = CloudinaryField('image')
-    bio = models.CharField(max_length=250)
-    
-    email =  models.CharField(max_length=60) 
+    bio = models.TextField(max_length=200)
+    country = models.CharField(max_length=50)
+    profile_picture = CloudinaryField('image')
+    contact = models.CharField(max_length=100, null=True)
+    created_on = models.DateTimeField(auto_now_add=True,null=True)
+
+    def _str_(self):
+        return f'{self.user.username} profile'
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
 
 
     def save_profile(self):

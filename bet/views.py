@@ -38,7 +38,7 @@ def home(request):
             com = form.save(commit=False)
             com.user = request.user
             com.save()
-            return redirect('index')   
+            return redirect('home')   
 
     else:
         form = ReviewForm()
@@ -56,7 +56,7 @@ def update_profile(request):
             prof = form.save(commit=False)
             prof.user = request.user
             prof.save()
-            return redirect ('index')
+            return redirect ('home')
         else:
             form = ProfileForm()
     return render(request, 'profile/update_profile.html', {'form': form})
@@ -93,7 +93,7 @@ def review(request,post_id):
       respo.user = request.user
       respo.post = post
       respo.save() 
-  return redirect('index')
+  return redirect('home')
 
 
 class PofileView(viewsets.ModelViewSet):
