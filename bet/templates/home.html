@@ -20,49 +20,26 @@
                         <img src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
                             class="card-img-top" alt="My profile picture">
                         {% endif %}  
-                    <h5 class="headings text-center text-white"></h5></button> 
+                    <h5 class="headings text-center text-white"></h5></button> Posted by:{{user.username}}
                 <div class="bg-white  shadow-sm"><img style="width: 400px;height: 400px;" src="{{ project.project_pic.url}}" alt="..."
                     class="img-fluid card-img-top">
                   <div class="p-4">
                     <h5 class="headings text-center"> <a data-bs-toggle="modal"
                         data-bs-target="#modalDisplayImageDetails{{photo.id}}"
-                        class="text-dark text-capitalize modal-click"> Project Name:{{project.project_name}}</a></h5>
+                        class="text-dark text-capitalize modal-click"> Project name:{{project.project_name}}</a></h5>
+                        <div class="cad-bdy"></div>
+                       <p> Poject Description:{{project.description}}</p>
                     <div class="d-flex justify-content-between">
-                      <div>
-                        <small class="text-muted">
-                          <span class="badge rounded-pill bg-info text-white text-capitalize">
+                      <div>                        
+                                              
                       </div>
                       <div>
                         <small class="text-muted">
-                          <span class="badge rounded-pill bg-dark text-white text-capitalize"></span>
+                          <span class="badge rounded-pill bg-dark text-white text-capitalize">Date added:{{project.posted_at}}</span>
                         </small>
                       </div>
                     </div>
-                    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                </div>
-                                <div class="modal-body">
-                                ...
-                                </div>
-                                <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
+                    
                   </div>
                 </div>
               </div>

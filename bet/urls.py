@@ -15,5 +15,5 @@ urlpatterns = [
     path('update_profile/<int:id>', views.update_profile, name = 'update_profile'),    
     path('project_post/',views.project_post, name = 'project_post'),
     path('review/<post_id>', views.review,name='review'),
-    path('apis/', include(router.urls)),
+    path('apis/', include(router.urls), name = 'apis'),
 ]
