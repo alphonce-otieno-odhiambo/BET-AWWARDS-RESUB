@@ -11,9 +11,9 @@ router.register('employee', views.ReviewView),
 
 urlpatterns = [
     path('', views.home , name = 'home'),
-    path('update_profile',views.update_profile, name='update_profile'),  
-    path('profile/<pk>',views.profile, name = 'profile'),    
+    path('profile/', views.profile, name='profile'),
+    path('update_profile/<int:id>', views.update_profile, name = 'update_profile'),    
     path('project_post/',views.project_post, name = 'project_post'),
     path('review/<post_id>', views.review,name='review'),
-    path('apis', include(router.urls)),
+    path('apis/', include(router.urls)),
 ]

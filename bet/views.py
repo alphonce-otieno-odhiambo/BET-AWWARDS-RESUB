@@ -18,69 +18,46 @@ from . models import *
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
-    posts = Post.objects.all().order_by('-posted_at')
-    
-    respos = Review.objects.all().filter().order_by('-posted_at')
     current_user = request.user
-    form = ReviewForm()
-    try:
-        if not request.user.is_authenticated:
-            return redirect('/accounts/login/')
-        current_user = request.user
-        profile =Profile.objects.get(user=current_user)
-        
-    except ObjectDoesNotExist:
-        return redirect('update_profile')
-    profiles = Profile.objects.filter(user_id = current_user.id).all()
-    if request.method == 'POST':  
-        form = ReviewForm(request.POST, request.FILES)
-        if form.is_valid():
-            com = form.save(commit=False)
-            com.user = request.user
-            com.save()
-            return redirect('home')   
+    profile = Profile.objects.filter(user_id=current_user.id).first()  
+    projo = Post.objects.all()
+    return render(request, 'home.html', {"projo":projo, "profile":profile})
 
+
+
+def profile(request):
+    current_user = request.user
+    profile = Profile.objects.filter(user_id=current_user.id).first()           
+    return render(request, "profile/profile.html", {"profile": profile, })
+
+def update_profile(request,id):
+    user = User.objects.get(id=id)
+    profile = Profile.objects.get(user_id = user)
+    form = ProfileForm(instance=profile)
+    if request.method == "POST":
+            form = ProfileForm(request.POST,request.FILES,instance=profile)
+            if form.is_valid():
+                profile = form.save(commit=False)
+                profile.save()
+                return redirect('profile')
     else:
-        form = ReviewForm()
-    return render(request, 'home.html',{'profiles':profiles,'posts':posts, 'form':form,'respos':respos,'current_user':current_user})
-
-
-
-
-
-def update_profile(request):
-    current_user = request.user
-    form = ProfileForm(request.POST, request.FILES)
-    if request.method == 'POST':          
-        if form.is_valid():
-            prof = form.save(commit=False)
-            prof.user = request.user
-            prof.save()
-            return redirect ('home')
-        else:
-            form = ProfileForm()
-    return render(request, 'profile/update_profile.html', {'form': form})
-
-def profile(request,pk):
-    user = User.objects.get(pk = pk)
-    profiles = Profile.objects.filter(user = user).all()
-    current_user = request.user    
-    return render(request,'profile/profile.html',{"current_user":current_user, "user":user, "profiles":profiles})
-
+        form = ProfileForm()
+    return render(request, 'profile/profile_form.html', {"form":form})
 
 def project_post(request):    
-    user = request.user
-    profiles = Profile.objects.filter(user = user).all()
-    form = PostForm(request.POST, request.FILES)
+    user = request.user  
+    projo = Post.objects.all() 
+    form = PostForm()
     if request.method == 'POST':  
+        form = PostForm(request.POST,request.FILES)
         if form.is_valid():
-            p = form.save(commit=False)
-            p.user = request.user
-            p.save()
-            return redirect ('home')        
-        else:
-            form = PostForm()    
-    return render(request,'project/post_project.html',{'form':form, 'profiles':profiles})
+            projo = form.save(commit=False)
+            
+            projo.save()
+            return redirect ('/')        
+    else:
+        form = PostForm()    
+    return render(request,'project/post_project.html',{'form':form})
 
 
 def review(request,post_id):
