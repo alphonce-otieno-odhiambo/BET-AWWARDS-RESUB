@@ -12,7 +12,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 CATEGORY_CHOICES = (
 	('Designe','Designe'),
 	('Informative','Informative'),
-	('Functionality','Fun'),	
+	('Functionality','Functionality'),	
 ) 
 # Create your models here.
 class Profile(models.Model):
@@ -40,8 +40,7 @@ class Profile(models.Model):
 
     def update_profile(self):
         self.save()
-    def _str_(self):
-        return self.user.username
+    
         
     
 
@@ -58,7 +57,7 @@ class Post(models.Model):
 
     def delete_post(self):
         self.delete()
-        
+
     def __str__(self):
         return self.project_name 
 

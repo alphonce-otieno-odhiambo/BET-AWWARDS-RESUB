@@ -11,7 +11,7 @@ class ProfileTestClass(TestCase):
         self.vale=User(username='vale')
         self.vale.save()
 
-        self.vale=Profile(user=self.vale, bio="aluta continua", profile_pic="https://www.pinterest.com/pin/492649949221163/", contact="Nairobi, Kenya")
+        self.vale=Profile(user=self.vale, bio="aluta continua", profile_picture="https://www.pinterest.com/pin/492649949221163/", contact="Nairobi, Kenya")
         self.vale.save_profile()
 
     def test_instance(self):
