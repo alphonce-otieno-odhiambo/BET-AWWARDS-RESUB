@@ -72,6 +72,17 @@ def review(request,post_id):
       respo.save() 
   return redirect('home')
 
+@login_required(login_url="/accounts/login/")
+def search_project(request):
+    if 'search_term' in request.GET and request.GET["search_term"]:
+        search_term = request.GET.get("search_term")
+        searched_project = Post.objects.filter(project_name__icontains=search_term)
+        message = f"Search For: {search_term}"
+        return render(request, "search.html", {"message": message, "searched_project": searched_project})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, "search.html", {"message": message})
+
 
 class PofileView(viewsets.ModelViewSet):
     queryset = Profile.objects.all()

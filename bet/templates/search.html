@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container ser">
+    <h2 class="text-center mb-5">Your search results{{search_term}}</h2>
+    <div class="row biz">
+        {% for project in projo %}
+            <div class="col-md-12">
+                <div class="card" >
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                
+                                <div class="bg-white  shadow-sm"><img style="width: 400px;height: 400px;" src="{{ project.project_pic.url}}" alt="..."
+                                    class="img-fluid card-img-top">
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="card-title text-capitalize"> Project name:{{project.project_name}}</h5>
+                                <p>Poject Description:{{project.description}}</p>
+                                <p>It was posted on:{{project.posted_at}}</p>
+                                
+                                
+                            </div>
+                       <br>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            {% empty %}
+            <div class="col-md-12">
+                <div class="card mb-4 post-card">
+                    <div class="card-body text-center">
+                        <h6 class="fade-item mb-2 text-danger">No such project by that name!! Please try again . Search by name</h6>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -16,4 +16,5 @@ urlpatterns = [
     path('project_post/',views.project_post, name = 'project_post'),
     path('review/<post_id>', views.review,name='review'),
     path('apis/', include(router.urls), name = 'apis'),
+     path('search_project/', views.search_project, name='search_project'),
 ]

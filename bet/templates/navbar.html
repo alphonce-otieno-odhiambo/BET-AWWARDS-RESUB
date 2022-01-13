@@ -6,7 +6,7 @@
   background: linear-gradient(to right, #CE5937 0%, #1C6EA4 50%, #C59237 100%);
     }
   </style>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-around">
     
     {% if user.is_authenticated %}
     
@@ -25,15 +25,33 @@
       <li class="nav-item">
         <a href="/apis" class="nav-link">APIs</a>
     </li>
-        <li class="mx-5 me-auto nav-item">
-          {% for profile in profiles%}
-             <a href="{% url 'profile' pk=user.id%}"><img class="prof-display mt-1" src="{{profile.profile_pic.url}}" alt=""></a> 
-          {% endfor %}
+    <li class="nav-item">
+      <a href="/profile" class="nav-link">Profile</a>
+  </li>
+      <li class="nav-item justify-content-between">
+          <div class="forms">
+            <form class="me-auto search-form " target="_self" action="{% url 'search_project' %}">
+                <div class="input-group ">
+                    <input type="text" class="form-control" placeholder="Search Project by name"
+                        name="search_term">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"
+                                style="color: white;"></i>Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </li>
+      <li class="nav-item">
+       
+          <a href="{% url 'project_post'%}" class="nav-link">Post project</a>
+      </li>
       </li>
         <li class="nav-item">
          
             <a href="/logout" class="nav-link">Logout</a>
         </li>
+        <div class=" justify-content-end"><img style="height: 40px;width: 30px;" src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d2hpc2t5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt=""></div>
         
         {% else %}
         <li>
